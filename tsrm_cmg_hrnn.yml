@@ -1,0 +1,25 @@
+id: 'tsrm_cmg_hrnn-spatika-evaluate_val_2_base'
+
+event_encoder_type: tsrm
+caption_decoder_type: cmg_hrnn
+wordRNN_input_feats_type: C
+
+lr: 0.0001 #[ UPD ] 0.0001
+train_proposal_type: gt
+
+visual_feature_type: c3d # [ UPD ]resnet_bn
+visual_feature_folder: 'data/c3d' # [ UPD ]'data/resnet_bn'
+feature_dim: 500 #3072
+hidden_dim: 256 # [UPD]
+feature_sample_rate: 2
+input_encoding_size: 256 # [UPD]
+att_hid_size: 256 # [UPD]
+optimizer_type: sgd
+grad_clip: 64
+
+
+epoch: 1 #15
+
+nthreads: 2 # this line is added  (default is 4)
+start_from: 'tsrm_cmg_hrnn-oscar15'
+start_from_mode: 'best'

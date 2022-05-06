@@ -1,5 +1,5 @@
 # Dense Video Captioning
-# For the baseline model: 
+Same process as the baseline model: 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/dense-captioning-events-in-videos-sysu/dense-video-captioning-on-activitynet)](https://paperswithcode.com/sota/dense-video-captioning-on-activitynet?p=dense-captioning-events-in-videos-sysu)
 
 Code for SYSU submission to [ActivityNet Challenge 2020](http://activity-net.org/challenges/2020/index.html) (Task2: Dense Video Captioning). Our approach follows a two-stage pipeline: first, we extract a set of temporal event proposals;

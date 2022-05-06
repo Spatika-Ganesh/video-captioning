@@ -1,0 +1,118 @@
+backup evironment completed !
+load translator, total_vocab: 5747
+load captioning file, 17814 captioning loaded
+load translator, total_vocab: 5747
+load captioning file, 1000 captioning loaded
+Load pre-trained parameters from save/tsrm_cmg_hrnn-oscar15/model-best-CE.pth
+
+
+******************** All args: *************************************************
+att_hid_size = 512
+basic_ss_prob = 0
+batch_size = 1
+caption_decoder_type = cmg_hrnn
+cfg_path = /content/drive/MyDrive/IDL_Project/idl_proj_dense-video-captioning-pytorch/cfgs/tsrm_cmg_hrnn_RL_enlarged_trainset.yml
+clip_context_dim = 500
+current_lr = 3e-05
+debug = False
+dict_file = data/vocabulary_activitynet.json
+disable_cudnn = 1
+drop_prob = 0.5
+epoch = 40
+eval_nms_threshold = 1
+eval_score_threshold = 0.0
+eval_top_n = 100
+event_context_dim = 1124
+event_encoder_type = tsrm
+feature_dim = 500
+feature_sample_rate = 2
+gpu_id = ['0']
+grad_clip = 100.0
+group_num = 16
+hidden_dim = 512
+id = tsrm_cmg_hrnn_RL_enlarged_trainset_spatika_v_2022-04-05-22-25-39
+input_encoding_size = 512
+invalid_video_json = data/resnet_bn_invalid_videos.json
+learning_rate_decay_every = 4
+learning_rate_decay_rate = 0.8
+learning_rate_decay_start = 0
+lr = 3e-05
+max_caption_len = 30
+min_epoch_when_save = -1
+nthreads = 2
+num_layers = 1
+optimizer_type = adam
+pretrain = 1
+pretrain_path = save/tsrm_cmg_hrnn-oscar15/model-best-CE.pth
+raw_feature_dim = 500
+rnn_size = 512
+save_all_checkpoint = False
+save_checkpoint_every = 1
+save_dir = ./save
+scheduled_sampling_increase_every = 2
+scheduled_sampling_increase_prob = 0.05
+scheduled_sampling_max_prob = 0.25
+scheduled_sampling_start = -1
+seed = 777
+self_critical_after = 0
+start_from = 
+start_from_mode = last
+train_caption_file = data/captiondata/expand_trainset/train_modified.json
+train_proposal_file = data/generated_proposals/dbg_trainval_top100.json
+train_proposal_sample_num = 24
+train_proposal_type = learnt_seq
+use_posit_branch = 1
+val_caption_file = data/captiondata/expand_trainset/val_1.json
+visual_feature_folder = data/c3d
+visual_feature_type = c3d
+vocab_size = 5747
+weight_decay = 0
+wordRNN_input_feats_type = C
+
+
+******************** Model structure: ******************************************
+EncoderDecoder(
+  (event_encoder): TSRM_Encoder(
+    (pre_map): Sequential(
+      (0): Linear(in_features=500, out_features=512, bias=True)
+      (1): ReLU()
+      (2): Dropout(p=0.5, inplace=False)
+    )
+    (key_map): Linear(in_features=512, out_features=512, bias=True)
+    (query_map): Linear(in_features=512, out_features=512, bias=True)
+    (value_map): Linear(in_features=512, out_features=512, bias=True)
+    (drop): Dropout(p=0.5, inplace=False)
+    (pair_pos_fc1): Linear(in_features=512, out_features=512, bias=True)
+    (pair_pos_fc2): Linear(in_features=512, out_features=16, bias=True)
+  )
+  (caption_decoder): ShowAttendTellModel(
+    (embed): Embedding(5748, 512)
+    (sent_rnn): LSTM(1024, 512, bias=False, dropout=0.5)
+    (gate_layer): Sequential(
+      (0): Linear(in_features=1536, out_features=512, bias=True)
+      (1): Sigmoid()
+    )
+    (global_proj): Sequential(
+      (0): Linear(in_features=512, out_features=512, bias=True)
+      (1): Tanh()
+    )
+    (local_proj): Sequential(
+      (0): Linear(in_features=1124, out_features=512, bias=True)
+      (1): Tanh()
+    )
+    (para_transfer_layer): Linear(in_features=512, out_features=512, bias=True)
+    (gate_drop): Dropout(p=0.5, inplace=False)
+    (logit): Linear(in_features=512, out_features=5748, bias=True)
+    (dropout): Dropout(p=0.5, inplace=False)
+    (core): ShowAttendTellCore(
+      (rnn): LSTM(1012, 512, bias=False, dropout=0.5)
+      (ctx2att): Linear(in_features=500, out_features=512, bias=True)
+      (h2att): Linear(in_features=512, out_features=512, bias=True)
+      (alpha_net): Linear(in_features=512, out_features=1, bias=True)
+    )
+  )
+)
+
+
+******************** Strat training ! ******************************************
+ID tsrm_cmg_hrnn_RL_enlarged_trainset_spatika_v_2022-04-05-22-25-39 iter 3562 (epoch 1, lr 3e-05), avg_iter_loss = [-0.027  0.142  0.153], time/iter = 0.701, bad_vid = 0.000

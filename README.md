@@ -2,14 +2,7 @@
 Same process as the baseline model: 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/dense-captioning-events-in-videos-sysu/dense-video-captioning-on-activitynet)](https://paperswithcode.com/sota/dense-video-captioning-on-activitynet?p=dense-captioning-events-in-videos-sysu)
 
-Code for SYSU submission to [ActivityNet Challenge 2020](http://activity-net.org/challenges/2020/index.html) (Task2: Dense Video Captioning). Our approach follows a two-stage pipeline: first, we extract a set of temporal event proposals;
-then we propose a multi-event captioning model to capture the event-level temporal relationships and effectively fuse
-the multi-modal information. 
-
-We won the 2nd place and the technical paper is available at [arxiv](https://arxiv.org/abs/2006.11693v2).
-
-
-
+The following setup is also outlined in the ipynb 
 # Environment
 1. Python 3.6.2
 2. CUDA 10.0, [PyTorch 1.2.0](https://pytorch.org/get-started/locally/) (may work on other versions but has not been tested)
@@ -43,19 +36,10 @@ result_folder=tsrm_cmg_hrnn_RL_enlarged_trainset
 val_caption_file=data/captiondata/expand_trainset/val_1.json
 python eval.py --eval_folder $result_folder --eval_caption_file $val_caption_file
 
-# evaluation with learnt proposals (small val set with 1000 videos)
-result_folder=tsrm_cmg_hrnn_RL_enlarged_trainset
-lnt_tap_json=data/generated_proposals/tsn_dbg_esgn_valset_num4717.json
-python eval.py --eval_folder $result_folder --eval_caption_file $val_caption_file --load_tap_json $lnt_tap_json
-
 # evaluation with ground-truth proposals (standard val set with 4917 videos)
 result_folder=tsrm_cmg_hrnn
 python eval.py --eval_folder $result_folder
 
-# evaluation with learnt proposals (standard val set with 4917 videos)
-result_folder=tsrm_cmg_hrnn
-lnt_tap_json=data/generated_proposals/tsn_dbg_esgn_valset_num4717.json
-python eval.py --eval_folder $result_folder --load_tap_json $lnt_tap_json
 ```
 
 - Testing
@@ -74,19 +58,4 @@ We provide a pre-trained model from [here](https://drive.google.com/drive/folder
 
 # Related project
 
-[PDVC (ICCV 2021)](https://github.com/ttengwang/PDVC): A simple yet effective dense video captioning method, which integrates the proposal generation and captioning generation into a parallel decoding manner. 
-
-# Citation
-If you find this repo helpful to your research, please consider citing:
-```
-@article{wang2020dense,
-  title={Dense-Captioning Events in Videos: SYSU Submission to ActivityNet Challenge 2020},
-  author={Wang, Teng and Zheng, Huicheng and Yu, Mingjing},
-  journal={arXiv preprint arXiv:2006.11693},
-  year={2020}
-}
-```
-
-# References
-- Awesome [ImageCaptioning.pytorch](https://github.com/ruotianluo/ImageCaptioning.pytorch) project.
-- [Official implementation](https://github.com/XgDuan/WSDEC) of "Weakly Supervised Dense Event Captioning in Videos".
+[PDVC (ICCV 2021)](https://github.com/ttengwang/PDVC): A simple yet effective dense video captioning method, which integrates the proposal generation and captioning generation into a parallel decoding 
